@@ -12,7 +12,7 @@ export const login=async(req,res,next)=>{
     // Update the last_login variable
     user.last_login = new Date();
 
-    res.status(200).json({ message: 'Login successful', doctor });
+    res.status(200).json({ message: 'Login successful', user });
   }
   else {
     res.status(401).json({ message: 'Incorrect email or password' });
