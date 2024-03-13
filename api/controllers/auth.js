@@ -6,11 +6,11 @@ export const login=async(req,res,next)=>{
         const { email, password } = req.body;
 
   // Find the doctor with the given email
-  const doctor =  await User.findOne({ email: req.body.email });
+  const user =  await User.findOne({ email: req.body.email });
 
-  if (doctor && bcrypt.compare(password, doctor.password)) {
+  if (user && bcrypt.compare(password, user.password)) {
     // Update the last_login variable
-    doctor.last_login = new Date();
+    user.last_login = new Date();
 
     res.status(200).json({ message: 'Login successful', doctor });
   }
