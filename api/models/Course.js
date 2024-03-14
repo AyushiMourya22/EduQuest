@@ -28,7 +28,7 @@ const courseSchema = mongoose.Schema({
       ref: 'User',
     },
   ],
-  discussion:[
+  discussions:[
     {
         type:mongoose.Schema.Types.ObjectId,
         ref:'Discussion'
@@ -38,7 +38,7 @@ const courseSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  prerequisite: {
+  prerequisites: {
     type: String,
   },
 });
