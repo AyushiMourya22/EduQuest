@@ -6,6 +6,8 @@ import cors from 'cors';
 import authRoute from './routes/auth.js';
 import userRoute from './routes/user.js';
 
+const errorHandler = require('./middleware/error.js');
+
 const app = express();
 
 require('dotenv').config();
@@ -16,6 +18,8 @@ app.use(cors());
 
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
+
+app.use(errorHandler);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
