@@ -1,11 +1,11 @@
 const mongoose =require("mongoose")
 
 const userSchema= mongoose.Schema({
-    first:{
+    firstName:{
         type:String,
         required:true,
     },
-    last:{
+    lastName:{
         type:String,
         required:true,
     },
@@ -21,13 +21,17 @@ const userSchema= mongoose.Schema({
         type:String,
         required:true,
     },
-    role:{
-        type:String,
+    isAdmin:{
+        type:Boolean,
         required:true,
 
     },
-    // discussion: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Discussion' }],
-    // courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
-})
+    courses: [
+        { 
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Course' 
+        }
+        ],
+},{timestamps:true})
 
 module.exports=mongoose.model("User",userSchema)

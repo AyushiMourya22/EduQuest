@@ -5,7 +5,6 @@ export const login=async(req,res,next)=>{
     try {
         const { email, password } = req.body;
 
-  // Find the doctor with the given email
   const user =  await User.findOne({ email: req.body.email });
 
   if (user && bcrypt.compare(password, user.password)) {
