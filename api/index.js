@@ -90,9 +90,15 @@ app.get(
 
 app.get('/login/success', (req, res) => {
   console.log('rty',req.user);
+  console.log('rty1',req.session.user);
   if (req.user) {
     res.status(200).json({ message: 'User logged in', user: req.user });
-  } else {
+  } 
+  else if(req.session.user){
+    res.status(200).json({ message: 'User logged in', user: req.session.user });
+    
+  }
+  else {
     res.status(400).json({ message: 'User log in failed' });
   }
 });
