@@ -1,10 +1,10 @@
-import express from 'express'
+// import express from 'express'
 
-const router=express.Router()
+// const router=express.Router()
 
-//get 
+// //get 
 
 
-//post
+// //post
 
-export default router 
+// export default router 

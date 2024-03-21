@@ -1,13 +1,14 @@
 const mongoose =require("mongoose")
 
 const userSchema= mongoose.Schema({
+    googleId:String,
     firstName:{
         type:String,
         required:true,
     },
     lastName:{
         type:String,
-        required:true,
+        // required:true,
     },
     bio:{
         type:String,
@@ -19,11 +20,11 @@ const userSchema= mongoose.Schema({
     },
     password:{
         type:String,
-        required:true,
+        // required:true,
     },
     isAdmin:{
         type:Boolean,
-        required:true,
+        // required:true,
 
     },
     courses: [

@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AuthNavbar from '../components/AuthNavbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Register() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [bio, setbio] = useState('');
+  const [role, setrole] = useState('');
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
+  const navigate=useNavigate()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(firstName,lastName,bio,role,email,password);
+    try {
+        const user=await axios.post('http://localhost:5000/api/auth/register', {
+        firstName,
+        lastName,
+        bio,
+        role,
+        email,
+        password,
+        },{withCredentials:true});
+        console.log(user);
+        if(user){
+            navigate('/')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+    
+  };
   return (
     <div className="min-h-screen flex flex-col">
       <AuthNavbar />
@@ -18,17 +47,16 @@ function Register() {
             <div className="flex flex-col md:flex-row justify-between w-full gap-2">
               <div className=" flex-1">
                 <label
-                  htmlFor="email"
+                  htmlFor="firstName"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   First Name
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
+                    id="firstName"
+                    name="firstName"
+                    onChange={(e) => setFirstName(e.target.value)}
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -36,17 +64,16 @@ function Register() {
               </div>
               <div className="flex-1">
                 <label
-                  htmlFor="email"
+                  htmlFor="lastName"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Last Name
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
+                    id="lastName"
+                    name="lastName"
+                    onChange={(e) => setLastName(e.target.value)}
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -56,17 +83,16 @@ function Register() {
 
             <div className="flex-1">
               <label
-                htmlFor="email"
+                htmlFor="bio"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Bio
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="bio"
+                  name="bio"
+                  onChange={(e) => setbio(e.target.value)}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -74,17 +100,16 @@ function Register() {
             </div>
             <div className="flex-1">
               <label
-                htmlFor="email"
+                htmlFor="role"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Role
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="role"
+                  name="role"
+                  onChange={(e) => setrole(e.target.value)}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -102,6 +127,7 @@ function Register() {
                   id="email"
                   name="email"
                   type="email"
+                  onChange={(e) => setemail(e.target.value)}
                   autoComplete="email"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -123,6 +149,7 @@ function Register() {
                   id="password"
                   name="password"
                   type="password"
+                  onChange={(e) => setpassword(e.target.value)}
                   autoComplete="current-password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -134,25 +161,21 @@ function Register() {
               <button
                 type="submit"
                 className="flex w-full my-2 md:my-4 justify-center rounded-md bg-[#888043] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#3c4d03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={handleSubmit}
               >
-                Log In
+                Register
               </button>
-              {/* <button
-                                type="submit"
-                                className="flex w-full my-2 md:my-4 justify-center rounded-md bg-[#888043] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#3c4d03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
-                                Sign Up
-                            </button> */}
-              <div className="text-sm flex justify-end mt-2">
-                <Link
-                  to="/register"
-                  className="font-semibold text-[#888043] hover:text-[#3c4d03]"
-                >
-                  Don't have an account? Create
-                </Link>
-              </div>
             </div>
           </form>
+        </div>
+        <div>
+          <button
+            onClick={() =>
+              window.open('http://localhost:5000/auth/google/callback', '_self')
+            }
+          >
+            Sign up with google
+          </button>
         </div>
       </div>
     </div>
