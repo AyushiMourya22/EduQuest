@@ -12,6 +12,7 @@ const login = async (req, res, next) => {
       // Update the last_login variable
       user.last_login = new Date();
 
+      setUserInSession(req, user);
       res.status(200).json({ message: 'Login successful', user });
     } else {
       res.status(401).json({ message: 'Incorrect email or password' });
@@ -35,7 +36,7 @@ const register = async (req, res, next) => {
     console.log(existUser);
     if (!existUser) {
       await newUser.save();
-      setUserInSession(req,newUser)
+      setUserInSession(req, newUser);
       res.status(200).json({ message: 'Successfully registered', newUser });
     } else {
       res.status(400).json({ message: 'email already exists' });

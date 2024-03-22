@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AuthNavbar from '../components/AuthNavbar';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import GoogleButton from 'react-google-button';
 
 function Register() {
   const [firstName, setFirstName] = useState('');
@@ -10,27 +11,30 @@ function Register() {
   const [role, setrole] = useState('');
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(firstName,lastName,bio,role,email,password);
+    console.log(firstName, lastName, bio, role, email, password);
     try {
-        const user=await axios.post('http://localhost:5000/api/auth/register', {
-        firstName,
-        lastName,
-        bio,
-        role,
-        email,
-        password,
-        },{withCredentials:true});
-        console.log(user);
-        if(user){
-            navigate('/')
-        }
+      const user = await axios.post(
+        'http://localhost:5000/api/auth/register',
+        {
+          firstName,
+          lastName,
+          bio,
+          role,
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+      console.log(user);
+      if (user) {
+        navigate('/');
+      }
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-    
   };
   return (
     <div className="min-h-screen flex flex-col">
@@ -168,14 +172,14 @@ function Register() {
             </div>
           </form>
         </div>
-        <div>
-          <button
+        <p className="flex justify-center mb-3">or</p>
+        <div className="flex justify-center items-center">
+          <GoogleButton
+            label="Sign up with Google"
             onClick={() =>
               window.open('http://localhost:5000/auth/google/callback', '_self')
             }
-          >
-            Sign up with google
-          </button>
+          />
         </div>
       </div>
     </div>
