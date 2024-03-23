@@ -3,6 +3,7 @@ import AuthNavbar from '../components/AuthNavbar';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import GoogleButton from 'react-google-button';
+import Navbar from '../components/Navbar';
 
 function Register() {
   const [firstName, setFirstName] = useState('');
@@ -38,7 +39,7 @@ function Register() {
   };
   return (
     <div className="min-h-screen flex flex-col">
-      <AuthNavbar />
+      <Navbar />
       <div className="flex  flex-1 flex-col justify-start px-6 py-12 lg:px-8 bg-[#ECEEE3]">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl md:text-3xl font-bold leading-9 tracking-tight text-[#3c4d03]">
@@ -62,7 +63,7 @@ function Register() {
                     name="firstName"
                     onChange={(e) => setFirstName(e.target.value)}
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3c4d03] sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -79,7 +80,7 @@ function Register() {
                     name="lastName"
                     onChange={(e) => setLastName(e.target.value)}
                     required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3c4d03] sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -98,7 +99,7 @@ function Register() {
                   name="bio"
                   onChange={(e) => setbio(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3c4d03] sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -115,7 +116,7 @@ function Register() {
                   name="role"
                   onChange={(e) => setrole(e.target.value)}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3c4d03] sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -134,7 +135,7 @@ function Register() {
                   onChange={(e) => setemail(e.target.value)}
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3c4d03] sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -156,7 +157,7 @@ function Register() {
                   onChange={(e) => setpassword(e.target.value)}
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#3c4d03] sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -164,7 +165,7 @@ function Register() {
             <div className="flex flex-col  ">
               <button
                 type="submit"
-                className="flex w-full my-2 md:my-4 justify-center rounded-md bg-[#888043] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#3c4d03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full my-2 md:my-4 justify-center rounded-md bg-[#888043] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#3c4d03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3c4d03]"
                 onClick={handleSubmit}
               >
                 Register
@@ -172,7 +173,7 @@ function Register() {
             </div>
           </form>
         </div>
-        <p className="flex justify-center mb-3">or</p>
+        <p className="flex justify-center font-bold text-[#3c4d03] mb-3">or</p>
         <div className="flex justify-center items-center">
           <GoogleButton
             label="Sign up with Google"

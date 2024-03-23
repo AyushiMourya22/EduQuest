@@ -89,8 +89,6 @@ app.get(
 );
 
 app.get('/login/success', (req, res) => {
-  console.log('rty',req.user);
-  console.log('rty1',req.session.user);
   if (req.user) {
     res.status(200).json({ message: 'User logged in', user: req.user });
   } 
@@ -99,9 +97,32 @@ app.get('/login/success', (req, res) => {
     
   }
   else {
-    res.status(400).json({ message: 'User log in failed' });
+    res.status(200).json({ message: 'User log in failed' });
   }
 });
+
+app.get('/logout',(req,res,next)=>{
+  if(req.user){
+    req.logout(function(err){
+      if(err)return next(err)
+      console.log("done1")
+    res.redirect("http://localhost:3000")
+  })
+}
+else if(req.session.user){
+  req.session.destroy(function(err){
+    if(err)return next(err)
+    console.log("done2")
+    res.redirect("http://localhost:3000")
+
+  })
+
+  }
+  else{
+    res.redirect("http://localhost:3000")
+  }
+  
+})
 
 app.listen(5000, () => {
   console.log('Listening at port 5000');
