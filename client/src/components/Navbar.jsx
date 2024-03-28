@@ -37,7 +37,7 @@ function Navbar() {
           Object.keys(user).length > 0 ?
             (
               <div>
-                <div className='' onClick={logout}>Logout</div>
+                <div className='cursor-pointer' onClick={logout}>Logout</div>
 
               </div>
             ) : (
